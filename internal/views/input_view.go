@@ -22,7 +22,7 @@ func InputAngka(prompt string) int {
 
 func InputEnter() string {
 	var enterKosong string
-	fmt.Printf("%s", "Enter untuk melanjutkan..")
+	fmt.Printf("%s\n", "Enter untuk melanjutkan..")
 	fmt.Scanf("%s", &enterKosong)
 	return enterKosong
 }

@@ -16,15 +16,26 @@ func StartApp() {
 		inputMenu := views.InputAngka("\nInput menu: ")
 
 		if inputMenu > 3 || inputMenu < 0 {
-			err := errors.New("Pilihan tidak valid")
+			err := errors.New("\nPilihan tidak valid")
 			fmt.Println(err)
 			enterKosong := views.InputEnter()
 			if enterKosong == "" {
 				continue
 			}
-			fmt.Println("Input tidak valid")
+			fmt.Println("\nInput tidak valid")
 			os.Exit(1)
 		}
+
+		// FIXME : belum bener. palingan caranya input pakai string dan validasi diconvert ke number.
+		// if _, err := strconv.Atoi(string(inputMenu)); err == nil {
+		// 	fmt.Println(errors.New("\nInput tidak valid."))
+		// 	enterKosong := views.InputEnter()
+		// 	if enterKosong == "" {
+		// 		continue
+		// 	}
+		// 	fmt.Println("\nInput tidak valid")
+		// 	os.Exit(1)
+		// }
 
 		switch inputMenu {
 		case 1:
@@ -64,9 +75,9 @@ func RegisterController() {
 			continue
 		}
 
-		fmt.Println("Registrasi berhasil")
+		fmt.Println("Registrasi berhasil.")
 
-		continue
+		os.Exit(0)
 	}
 }
 
