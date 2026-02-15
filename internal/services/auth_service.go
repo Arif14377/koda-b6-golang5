@@ -55,3 +55,28 @@ func Register(user models.User, confirmPassword string) error {
 	fmt.Printf("Password Anda (Encrypted): %s\n", user.Password)
 	return nil
 }
+
+func Login(user models.User) error {
+	// cek apakah email email sudah terdaftar?
+	data := []byte(user.Password)
+	hashPass := md5.Sum(data)
+	encodeHash := hex.EncodeToString(hashPass[:])
+
+	fmt.Println("password input : ", encodeHash)
+
+	for i := range users {
+		if users[i].Email == user.Email {
+			// cek apakah password benar?
+			fmt.Println("users[i].Password : ", users[i].Password)
+			if encodeHash == users[i].Password {
+				return nil
+			} else {
+				err := errors.New("Password salah.")
+				return err
+			}
+		}
+	}
+	// Jika email tidak terdaftar, return error
+	err := errors.New("Email tidak terdaftar")
+	return err
+}

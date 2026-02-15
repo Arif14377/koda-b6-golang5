@@ -77,12 +77,30 @@ func RegisterController() {
 
 		fmt.Println("Registrasi berhasil.")
 
-		os.Exit(0)
+		LoginController()
 	}
 }
 
 func LoginController() {
-	views.Login()
+	for true {
+		views.Login()
+		email := views.InputString("Enter your email: ")
+		password := views.InputString("Enter your password: ")
+
+		user := models.User{
+			Email:    email,
+			Password: password,
+		}
+
+		err := services.Login(user)
+
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		fmt.Println("Login berhasil berhasil.")
+		os.Exit(0)
+	}
 }
 
 func ForgotPasswordController() {
