@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Arif14377/koda-b6-golang5/internal/models"
+	"github.com/Arif14377/koda-b6-golang5/internal/services"
 	"github.com/Arif14377/koda-b6-golang5/internal/views"
 )
 
@@ -39,7 +41,33 @@ func StartApp() {
 }
 
 func RegisterController() {
-	views.Register()
+	for true {
+		views.Register()
+
+		firstName := views.InputString("What is your first name: ")
+		lastName := views.InputString("What is your last name: ")
+		email := views.InputString("What is your email: ")
+		password := views.InputString("Enter a strong password: ")
+		confirmPassword := views.InputString("Confirm your password: ")
+
+		user := models.User{
+			FirstName: firstName,
+			LastName:  lastName,
+			Email:     email,
+			Password:  password,
+		}
+
+		err := services.Register(user, confirmPassword)
+
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+
+		fmt.Println("Registrasi berhasil")
+
+		continue
+	}
 }
 
 func LoginController() {
