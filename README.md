@@ -4,3 +4,7 @@
 3. Menggunakan Defer, Exit, Panic, Recover, Pointer, Method dan Interface.
 4. Encrypt Password (md5)
 6. Contoh: https://github.com/fulsep/fgo24-go-playground
+
+<!-- TODO -->
+Belum diimplementasikan:
+- Defer, Recover, Interface
