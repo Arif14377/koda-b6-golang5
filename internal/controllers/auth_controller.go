@@ -105,4 +105,20 @@ func LoginController() {
 
 func ForgotPasswordController() {
 	views.ForgotPassword()
+	email := views.InputString("Enter your email: ")
+	password := views.InputString("Enter strong password: ")
+
+	user := models.User{
+		Email:    email,
+		Password: password,
+	}
+
+	err := services.ForgotPassword(user)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Println("Password berhasil diubah.")
+	LoginController()
 }

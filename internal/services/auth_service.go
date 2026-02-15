@@ -80,3 +80,19 @@ func Login(user models.User) error {
 	err := errors.New("Email tidak terdaftar")
 	return err
 }
+
+func ForgotPassword(user models.User) error {
+	data := []byte(user.Password)
+	hashPass := md5.Sum(data)
+	encodeHash := hex.EncodeToString(hashPass[:])
+
+	for i := range users {
+		if user.Email == users[i].Email {
+			users[i].Password = encodeHash
+			return nil
+		}
+	}
+
+	err := errors.New("Email tidak terdaftar.")
+	return err
+}
